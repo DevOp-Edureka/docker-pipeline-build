@@ -1,8 +1,9 @@
 pipeline {
     agent any
+
     tools {
-        jdk: 'JDK17-2'
-        maven: 'Maven3'
+        jdk 'JDK17-2'
+        maven 'Maven3'
     }
 
     stages {
@@ -11,17 +12,18 @@ pipeline {
                 cleanWs()
             } 
         }
-    stage('Checkout from SCM'){
-      steps{
-         //git branch: 'main', changelog: false, credentialsId: 'Jenkins_agents', poll: false, url: 'https://github.com/DevOp-Edureka/sample-maven-project-2.git'
-      }
-    }
+    
+        stage('Checkout from SCM'){
+        steps{
+            git branch: 'main', changelog: false, credentialsId: 'Jenkins_agents', poll: false, url: 'https://github.com/DevOp-Edureka/docker-pipeline-build.git'
+            }
+        }
 
-    stage('Build Application'){
-      steps{
-        bat 'mvn clean package'
-      }
-    }
+        stage('Build Application'){
+            steps{
+                bat 'mvn clean package'
+            }
+        }
 
     }
 }
